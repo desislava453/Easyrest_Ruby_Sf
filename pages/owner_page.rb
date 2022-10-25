@@ -8,7 +8,7 @@ class Owner
   ACCEPTED_BTN = { css: "[href*='profile/current_orders/Accepted']" }.freeze
   ASSIGNED_WAITER_BTN = { css: "[href*='profile/current_orders/Assigned waiter']" }.freeze
   IN_PROGRESS_BTN = { css: "[href*='profile/current_orders/In progress']" }.freeze
-  ARROW_DOWN_BTN = { xpath: '/html/body/div/main/div/div/div/div[1]/div/div/div[1]/div[1]/div[2]/span[1]/svg' }.freeze
+  ARROW_DOWN_BTN = { xpath: '//div/main/div/div/div/div[1]/div/div/div[1]/div[1]/div[2]/span[1]/svg' }.freeze
   ARROW_SIDE_BTN = { xpath: '/html/body/div/main/div/div/div/div[1]/div/header/div/div[2]/button/svg' }.freeze
   DELETE_DRAFT_BTN = { xpath: "//span[contains(@class, 'MuiButton-label')][contains(., 'Delete')]" }.freeze
   DECLINE_ORDER_BTN = { xpath: "//span[contains(@class, 'MuiButton-label')][contains(., 'Decline')]" }.freeze
@@ -16,8 +16,6 @@ class Owner
   MY_PERSONAL_INFO_BTN = { css: "[href*='profile/personal_info']" }.freeze
   MY_CURRENT_ORDERS_BTN = { css: "[href*='profile/current_orders']" }.freeze
   MY_ORDER_HISTORY_BTN = { css: "[href*='profile/order_history']" }.freeze
-  WATCH_MENU_BTN = { xpath: "//span[contains(@class, 'MuiButton-label')][contains(., 'Watch Menu')]" }.freeze
-  DETAILS_BTN = { xpath: "//span[contains(@class, 'MuiButton-label')][contains(., 'details')]" }.freeze
   ADD_RESTAURANT_BTN = { xpath: "//*[@title='Add restaurant']" }.freeze
   REST_NAME_FLD = { xpath: '//div[1]/div[3]/div/div/div/div[2]/form/div/div[1]/div/div/input' }.freeze
   REST_ADDRESS_FLD = { xpath: '//div[1]/div[3]/div/div/div/div[2]/form/div/div[2]/div/div/input' }.freeze
@@ -95,14 +93,6 @@ class Owner
     @driver.find_element(MY_ORDER_HISTORY_BTN).click
   end
 
-  def click_watch_menu_btn
-    @driver.find_element(WATCH_MENU_BTN).click
-  end
-
-  def click_details_btn
-    @driver.find_element(DETAILS_BTN).click
-  end
-
   def click_add_restaurant_btn
     @driver.find_element(ADD_RESTAURANT_BTN).click
   end
@@ -165,5 +155,36 @@ class Owner
 
   def click_cancel_rest_btn
     @driver.find_element(CANCEL_REST_BTN).click
+  end
+
+  def rest_created_msg
+    @driver.find_element(xpath: "//*[contains(text(),'Restaurant was successfully created')]")
+  end
+
+  def watch_menu_btn
+    @driver.find_element(xpath: "//*[contains(text(),'Watch Menu')]")
+  end
+
+  def history_tab
+    @driver.find_element(css: "[href*='/profile/order_history/History']")
+  end
+
+  def waiting_for_confirm_tab
+    @driver.find_element(css: "[href*='profile/current_orders/Waiting for confirm']")
+  end
+
+  def name_label
+    @driver.find_element(xpath: "//*[contains(text(),'Jason Brown')]")
+  end
+
+  def create_restaurant(rest_name, rest_address, rest_phone, rest_preview_txt, rest_description)
+    click_add_restaurant_btn
+    sleep(1)
+    type_rest_name(rest_name)
+    type_rest_address(rest_address)
+    type_rest_phone(rest_phone)
+    type_rest_preview_txt(rest_preview_txt)
+    type_rest_description(rest_description)
+    click_add_rest_btn
   end
 end
