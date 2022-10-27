@@ -4,7 +4,7 @@ pipeline {
         stage('Test') {
 
             steps {
-                sh 'RAILS_ENV=test bundle exec rake single'
+                sh 'REPORT_PATH=reports --format RspecHtmlReporter bundle exec rake single'
             }
         }
     }
