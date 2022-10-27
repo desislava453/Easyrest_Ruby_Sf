@@ -4,7 +4,7 @@ pipeline {
         stage('Test') {
 
             steps {
-                sh 'REPORT_PATH=reports --format RspecHtmlReporter bundle exec rake single'
+                sh 'bundle exec rake single'
             }
         }
     }
