@@ -11,8 +11,8 @@ RSpec.configure do |config|
     @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     chrome_options = Selenium::WebDriver::Chrome::Options.new
     chrome_options.add_argument('--no-sandbox')
-    # chrome_options.add_argument('--headless')
-    # chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--disable-dev-shm-usage')
     @driver = Selenium::WebDriver.for :chrome, :options => chrome_options
     @driver.manage.window.maximize
