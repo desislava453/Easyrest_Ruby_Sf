@@ -13,7 +13,7 @@ pipeline {
             allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: true,
-            reportDir: 'coverage',
+            reportDir: '/var/lib/jenkins/workspace/easyrest/reports',
             reportFiles: 'index.html',
             reportName: 'RCov Report'
           ]
