@@ -23,6 +23,11 @@ RSpec.configure do |config|
       @driver.get(env_data[:local_url])
     end
   end
+  config.after(:each) do |example|
+    if example.exception
+      @driver.save_screenshot("screenshots/scr-#{Time.now.strftime('%Y-%m-%d %H-%M-%S')}.png")
+      end
+  end
   config.after(:context) do
     @driver.quit
   end
