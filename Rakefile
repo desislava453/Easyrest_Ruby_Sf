@@ -7,12 +7,3 @@ RSpec::Core::RakeTask.new(:all) do |t|
 end
 
 task :default => :all
-
-RSpec::Core::RakeTask.new(:single) do |t|
-  ENV['CONFIG_NAME'] ||= "single"
-  t.pattern = Dir.glob('spec/owner_page_spec.rb')
-end
-
-task :test => :single
-
-
