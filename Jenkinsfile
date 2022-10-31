@@ -4,7 +4,7 @@ pipeline {
       stage('Test') {
 
             steps {
-                sh 'bundle exec rake single'
+                sh 'bundle exec rake all'
             }
             
         }
