@@ -17,7 +17,7 @@ pipeline {
         archive includes: 'pkg/*.gem'
 
         // publish html
-        publishHTML (target: [
+        publishHTML ([
             allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: true,
