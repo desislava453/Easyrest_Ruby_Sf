@@ -19,11 +19,11 @@ pipeline {
         // publish html
         publishHTML (target: [
             allowMissing: false,
-            alwaysLinkToLastBuild: true,
+            alwaysLinkToLastBuild: false,
             keepAll: true,
             reportDir: 'coverage',
             reportFiles: 'index.html',
-            reportName: 'Easyrest Report'
+            reportName: 'HTML Report'
         ])
       }
       
