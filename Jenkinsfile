@@ -12,11 +12,6 @@ pipeline {
       }
     }
     stage ('Build') {
-      steps {
-        // build
-        sh 'bundle exec rake build'
-      }
-
       post {
         success {
           // Archive the built artifacts
