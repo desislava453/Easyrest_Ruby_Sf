@@ -11,7 +11,8 @@ pipeline {
                 sh 'bundle exec rake all'
                 // Archive the built artifacts
                 archive includes: 'pkg/*.gem'
-
+        post {
+            success {
                 // publish html
                 publishHTML target: [
                     allowMissing: false,
@@ -26,3 +27,10 @@ pipeline {
         }
       }
   }
+  post {
+    always {
+      echo "Send notifications for result: ${currentBuild.result}"
+    }
+  }
+}
+}
