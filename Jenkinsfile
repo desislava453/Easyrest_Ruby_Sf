@@ -9,19 +9,19 @@ pipeline {
       steps {
         // install required gems
         sh 'bundle install'
+      }      
+      
+      post {
+        success {
+          // Archive the built artifacts
+          archive includes: 'pkg/*.gem'
+        }
       }
     }
     stage ('Test') {
       steps {
         // run tests with coverage
         sh 'bundle exec rake all'
-      }
-
-      post {
-        success {
-          // Archive the built artifacts
-          archive includes: 'pkg/*.gem'
-        }
       }
 
       post {
