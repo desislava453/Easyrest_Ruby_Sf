@@ -5,43 +5,28 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr:'10'))
   }
   stages {
-    stage ('Install') {
+    stage ('Build') {
       steps {
         // install required gems
         sh 'bundle install'
-      }      
-      
-      post {
-        success {
-          // Archive the built artifacts
-          archive includes: 'pkg/*.gem'
-        }
-      }
-    }
-    stage ('Test') {
-      steps {
+        
         // run tests with coverage
         sh 'bundle exec rake all'
-      }
+      
+        // Archive the built artifacts
+        archive includes: 'pkg/*.gem'
 
-      post {
-        success {
-          // publish html
-          publishHTML (target: [
-              allowMissing: false,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: 'coverage',
-              reportFiles: 'index.html',
-              reportName: 'Easyrest Report'
-            ])
-        }
+        // publish html
+        publishHTML (target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'coverage',
+            reportFiles: 'index.html',
+            reportName: 'Easyrest Report'
+        ])
       }
-    }
-  }
-  post {
-    always {
-      echo "Send notifications for result: ${currentBuild.result}"
+      
     }
   }
 }
