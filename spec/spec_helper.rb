@@ -5,6 +5,8 @@ require 'webdrivers'
 require 'yaml'
 require 'test/unit/assertions'
 include RSpec::Expectations
+require 'simplecov'
+SimpleCov.start
 
 RSpec.configure do |config|
   config.before(:context) do

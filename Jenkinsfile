@@ -31,8 +31,8 @@ pipeline {
               allowMissing: false,
               alwaysLinkToLastBuild: false,
               keepAll: true,
-              reportDir: 'reports',
-              reportFiles: 'overview.html',
+              reportDir: 'coverage',
+              reportFiles: 'index.html',
               reportName: 'Easyrest Report'
             ])
         }
