@@ -5,7 +5,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr:'10'))
     // Creates sidebar link, pointing to the generated report in workspace
     sidebarLinks([
-            [displayName: 'HTML Report', iconFileName: '', urlName: 'http://desislava-virtual-machine:8080/job/All%20tests%20pipeline/' + currentBuild.number + '/execution/node/3/ws/coverage/index.html#_AllFiles']
+            [displayName: 'HTML Report', iconFileName: 'http://desislava-virtual-machine:8080/static/49e85163/images/svgs/graph.svg', urlName: 'http://desislava-virtual-machine:8080/job/All%20tests%20pipeline/' + currentBuild.number + '/execution/node/3/ws/coverage/index.html#_AllFiles']
         ])
   }
   stages {
